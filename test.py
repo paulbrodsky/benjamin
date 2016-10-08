@@ -1,32 +1,15 @@
 #!/usr/bin/env Python
-a1 = "a"
-b2 = "b"
-c3 = "c"
-d4 = "d"
-e5 = "e"
-f6 = "f"
-g7 = "g"
-h8 = "h"
-i9 = "i"
-j10 = "j"
-k11 = "k"
-l12 = "l"
-m13 = "m"
-n14 = "n"
-o15 = "o"
-p16 = "p"
-q17 = "q"
-r18 = "r"
-s19 = "s"
-t20 = "t"
-u21 = "u"
-v22 = "v"
-w23 = "w"
-x24 = "x"
-y25 = "y"
-z26 = "z"
-what = " "
 
-print h8+i9+what+h8+a1+n14+n14+a1+h8
+def encrypLetter(letter):
+  return letter + str("abcdefghijklmnopqrstuvwxyz !".index(letter))
+
+def encryptMessage(message):
+  result = ""
+  for letter in message:
+    result = result + encrypLetter(letter)
+  return result
+
+print encryptMessage("hi hannah")
+print encryptMessage("yo dummy!")
 
 
