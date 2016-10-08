@@ -1,4 +1,5 @@
-var=5
-var
+#!/usr/bin/env Python
 
-hi benjamii
+ccc = "this is the string"
+
+print ccc
