@@ -1,19 +1,16 @@
 #!/usr/bin/env Python
 
-letterMap = "abcdefghijklmnopqrstuvwxyz"
-length = len(letterMap)
+letterMap = "abcdefghijklmnopqrstuvwxyz !"
+letterMap = letterMap + letterMap
 offset = 5
 
 def encrypLetter(letter):
   offsetIndex = letterMap.index(letter) + offset
-
-  if offsetIndex > length - offset - 1:
-    offsetIndex = 0
-
   return letterMap[offsetIndex]
 
 def decrypLetter(letter):
-  return letter + str("abcdefghijklmnopqrstuvwxyz !".index(letter))
+  offsetIndex = letterMap.index(letter) - offset
+  return letterMap[offsetIndex]
 
 def encryptMessage(message):
   result = ""
@@ -21,8 +18,16 @@ def encryptMessage(message):
      result = result + encrypLetter(letter)
   return result
 
-# print encryptMessage("hi hannah")
-# print encryptMessage("yo dummy!")
+def decryptMessage(message):
+  result = ""
+  for letter in message:
+     result = result + decrypLetter(letter)
+  return result
 
-print encrypLetter("a")
-print encrypLetter("z")
+message = "hi ben!"
+encryptedMessage = encryptMessage(message)
+decryptedMessage = decryptMessage(encryptedMessage)
+
+print message
+print encryptedMessage
+print decryptedMessage
