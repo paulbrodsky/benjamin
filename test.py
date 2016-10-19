@@ -28,6 +28,6 @@ message = "hi ben!"
 encryptedMessage = encryptMessage(message)
 decryptedMessage = decryptMessage(encryptedMessage)
 
-print message
-print encryptedMessage
-print decryptedMessage
+print "Message:   {0}".format(message)
+print "Encrypted: {0}".format(encryptedMessage)
+print "Decrypted: {0}".format(decryptedMessage)
