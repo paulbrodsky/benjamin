@@ -1,6 +1,8 @@
 #todo: validation
 #todo: winner
 #todo: SIGN UUUP
+#testing cloud9
+
 
 sqaures = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
