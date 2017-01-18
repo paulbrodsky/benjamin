@@ -1,29 +1,28 @@
-class Game:
-    def __init__(self):
-        self.tile1 = Tile()
-        self.tile2 = Tile()
-        self.tile3 = Tile()
-        self.tile4 = Tile()
-        self.tile5 = Tile()
-        self.tile6 = Tile()
-        self.tile7 = Tile()
-        self.tile8 = Tile()
-        self.tile9 = Tile()
-        self.player1 = Player('X')
-        self.player2 = Player('O')
-        
+#todo: validation
+#todo: winner
+#todo: SIGN UUUP
 
-class Tile:
-    def __init__(self):
-        self.value = 'blank'  
-     
-class Player:
-    def __init__(self, value):
-        self.value = value
+sqaures = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
+print 'Instructions: these are the rules'
 
-game = Game()
-print game.player1.value
-print game.player2.value
+player = 'X'
 
-print 'end'
+def printBoard():
+    print sqaures[0] + '|' + sqaures[1] + '|' + sqaures[2]
+    print sqaures[3] + '|' + sqaures[4] + '|' + sqaures[5]
+    print sqaures[6] + '|' + sqaures[7] + '|' + sqaures[8]
+    
+
+while True:
+    printBoard()
+   
+    number = input("what's your move, " + player + "?")
+    number = number - 1
+
+    sqaures[number] = player
+
+    if player == 'X':
+        player = 'O'
+    else:
+        player = 'X'
