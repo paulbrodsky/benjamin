@@ -15,13 +15,17 @@ while True:
     number = raw_input("what's your move, " + player + "?")
     
     number = int(number)
-  
-    if number > 9:
+    # math operations can only be done on numbers
+    # i see it, im talking about the terminal below
+    #when you were entering git commands below, look there
+    #what do you mean
+    # this is enough to go on for you. make sure to validate > 0 alsoor less than 1 however you choose 
+    # have fun
+    if number > 11 - 1:
         print "hey stop that and type the right number"
         continue
         
-    number = number - 1
-    squares[number] = player
+   
 
     if player == 'X':
         player = 'O'
