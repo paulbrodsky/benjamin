@@ -14,11 +14,19 @@ while True:
    
     number = raw_input("what's your move, " + player + "?")
     
+    # if the value of the number string is not numeric 
+    # (if it is empty or contains a letter)
+    # the following line will throw an error
+    # you need to check if its a number before this line
+    # by doing number.isnumeric() which returns true or false
     number = int(number)
   
+    #what if the value is less than 1?
     if number > 9:
         print "hey stop that and type the right number"
         continue
+    
+    # also, you need to guard against using an already chosen square
         
     number = number - 1
     squares[number] = player
