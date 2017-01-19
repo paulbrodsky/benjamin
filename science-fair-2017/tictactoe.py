@@ -17,11 +17,12 @@ while True:
     # if the value of the number string is not numeric 
     # (if it is empty or contains a letter)
     # the following line will throw an error
-    # you need to check if its a number before this line
-    # by doing number.isnumeric() which returns true or false
+    # take a look at this to see how to handle errors (exceptions)
+    # https://docs.python.org/2.7/tutorial/errors.html#handling-exceptions
+
     number = int(number)
   
-    #what if the value is less than 1?
+    #what if the value is lesjs than 1?
     if number > 9:
         print "hey stop that and type the right number"
         continue
