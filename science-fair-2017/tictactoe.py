@@ -27,6 +27,7 @@ while True:
         continue
     
     # also, you need to guard against using an already chosen square
+    # if squares[number] == 'X' or squares[number] == 'O'
         
     number = number - 1
     squares[number] = player
