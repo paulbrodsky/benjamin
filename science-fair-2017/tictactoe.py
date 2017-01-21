@@ -51,7 +51,7 @@ while True:
     
     if isWinner(player, squares):
         print 'you won'
-        printBoard()
+        printBoard(squares)
         break
     
     if player == 'X':
