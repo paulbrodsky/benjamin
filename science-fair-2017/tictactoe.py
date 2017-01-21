@@ -12,6 +12,12 @@ def isWinner(player, squares):
     or areSquaresMarked(player, 0, 3, 6) \
     or areSquaresMarked(player, 1, 4, 7) \
     or areSquaresMarked(player, 2, 5, 8)
+    
+def isGameTied(squares):
+    for x in range(0, 9):
+        if squares[x] != 'X' and squares[x] != 'O':
+            return False
+    return True
 
 def printBoard(squares):
     print squares[0] + '|' + squares[1] + '|' + squares[2]
@@ -52,6 +58,11 @@ while True:
     if isWinner(player, squares):
         printBoard(squares)
         print 'you won'
+        break
+    
+    if isGameTied(squares):
+        printBoard(squares)
+        print 'Game is tied'
         break
     
     if player == 'X':
