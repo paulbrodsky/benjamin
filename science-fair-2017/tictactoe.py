@@ -50,8 +50,8 @@ while True:
     squares[number] = player
     
     if isWinner(player, squares):
-        print 'you won'
         printBoard(squares)
+        print 'you won'
         break
     
     if player == 'X':
