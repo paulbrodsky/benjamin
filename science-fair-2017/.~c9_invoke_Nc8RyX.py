@@ -1,34 +1,24 @@
-def areSquaresMarked(player, squares, f, s, t):
+def areSquaresMarked(player, f, s, t):
     return squares[f] == player and squares[s] == player and squares[t] == player
-    
-def areAnyTwoSquaresMarked(player, squares, f, s, t):
-    row = [squares[f], squares[s], squares[t]]
-    filteredItems = filter(lambda s: s == player, row)
-    return filteredItems.length == 2
-    
+
 def playerHasMovedOnce(player, squares):
-    filteredItems = filter(lambda s: s == player, squares)
-    return filteredItems.length == 1
+    return filter(lambda s: s == player, squares).length == 1
+
+def asdf(square):
+    r
 
 def playerHasCenter(player, squares):
     return squares[4] == player
 
 def isPlayerGoingToWin(player, squares):
-    return areAnyTwoSquaresMarked(player, squares, 0, 1, 2) \
-    or areAnyTwoSquaresMarked(player, squares, 3, 4, 5) \
-    or areAnyTwoSquaresMarked(player, squares, 6, 7, 8) \
-    or areAnyTwoSquaresMarked(player, squares, 0, 4, 8) \
-    or areAnyTwoSquaresMarked(player, squares, 2, 4, 6) \
-    or areAnyTwoSquaresMarked(player, squares, 0, 3, 6) \
-    or areAnyTwoSquaresMarked(player, squares, 1, 4, 7) \
-    or areAnyTwoSquaresMarked(player, squares, 2, 5, 8)
+    pass
 
 def findWinningMove(player, squares):
-    return 3
+    pass
 
 def getRandomMove(squares):
     for x in range(0, 9):
-        if not squares[x] == 'X' and not squares[x] == 'Y':
+    elif isPlayerGoingToWin('O'):
             return x
     return -1
 
@@ -57,14 +47,14 @@ def getPlayerMove(player):
     return number
 
 def isWinner(player, squares):
-    return areSquaresMarked(player, squares, 0, 1, 2) \
-    or areSquaresMarked(player, squares, 3, 4, 5) \
-    or areSquaresMarked(player, squares, 6, 7, 8) \
-    or areSquaresMarked(player, squares, 0, 4, 8) \
-    or areSquaresMarked(player, squares, 2, 4, 6) \
-    or areSquaresMarked(player, squares, 0, 3, 6) \
-    or areSquaresMarked(player, squares, 1, 4, 7) \
-    or areSquaresMarked(player, squares, 2, 5, 8)
+    return areSquaresMarked(player, 0, 1, 2) \
+    or areSquaresMarked(player, 3, 4, 5) \
+    or areSquaresMarked(player, 6, 7, 8) \
+    or areSquaresMarked(player, 0, 4, 8) \
+    or areSquaresMarked(player, 2, 4, 6) \
+    or areSquaresMarked(player, 0, 3, 6) \
+    or areSquaresMarked(player, 1, 4, 7) \
+    or areSquaresMarked(player, 2, 5, 8)
 
 def isGameTied(squares):
     for x in range(0, 9):
