@@ -1,6 +1,20 @@
 def areSquaresMarked(player, f, s, t):
     return squares[f] == player and squares[s] == player and squares[t] == player
 
+def getComputerMove():
+    print 'Player O has chosen 5'
+    return 5
+ 
+def getPlayerMove(player):
+    number = raw_input("what's your move, " + player + "?")
+    number = int(number)
+  
+    if number < 1 or number > 9:
+        print "hey stop that and type the right number"
+        return -1
+        
+    return number
+
 def isWinner(player, squares):
     return areSquaresMarked(player, 0, 1, 2) \
     or areSquaresMarked(player, 3, 4, 5) \
@@ -31,16 +45,20 @@ player = 'X'
 while True:
     printBoard(squares)
     
-    number = raw_input("what's your move, " + player + "?")
-    number = int(number)
-  
-    if number < 1 or number > 9:
-        print "hey stop that and type the right number"
+    number = -1
+    
+    if player == 'X':
+        number = getPlayerMove(player)
+    else: 
+        number = getComputerMove()
+    
+    if number == -1:
         continue
     
     number = number - 1
-    squares[number] = player
     
+    squares[number] = player
+
     if isWinner(player, squares):
         printBoard(squares)
         print 'you won'
@@ -52,8 +70,10 @@ while True:
         break
     
     if player == 'X':
-        player = 'O'
+       player = 'O'
     else:
-        player = 'X'
+       player = 'X'
+    
+    
   
         
