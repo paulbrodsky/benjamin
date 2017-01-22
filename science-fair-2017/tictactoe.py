@@ -3,12 +3,12 @@ def areSquaresMarked(player, squares, f, s, t):
     
 def areAnyTwoSquaresMarked(player, squares, f, s, t):
     row = [squares[f], squares[s], squares[t]]
-    filteredItems = filter(lambda s: s == player, row)
-    return filteredItems.length == 2
+    filteredItems = list(filter(lambda s: s == player, row))
+    return len(filteredItems) == 2
     
 def playerHasMovedOnce(player, squares):
-    filteredItems = filter(lambda s: s == player, squares)
-    return filteredItems.length == 1
+    filteredItems = list(filter(lambda s: s == player, squares))
+    return len(filteredItems) == 1
 
 def playerHasCenter(player, squares):
     return squares[4] == player
@@ -91,7 +91,8 @@ while True:
     if player == 'X':
         number = getPlayerMove(player)
     else: 
-        number = getComputerMove()
+        number = getComputerMove(squares)
+        print 'Computer has chosen ' + str(number)
     
     if number == -1:
         continue
