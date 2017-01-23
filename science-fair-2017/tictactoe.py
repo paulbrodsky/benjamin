@@ -43,7 +43,33 @@ class TicTacToe:
         return True
 
     def getComputerMove(self):
+        
+        # This single line of code below determines the intelligence of the AI.
+        # It is a list of squares to look at for a valid move,
+        # ordered by the best move first and worst move last.
+        # The computer will then go through each possibility in order,
+        # and choose the first one that is a valid move.
+
+        # The following is the optimal order:
+
+        # 1. Find a winning move for itself
+        # 2. Find a blocking move to prevent the opponent from winning
+        # 3. Center square
+        # 4. Corner squares
+        # 5. Side and top squares
+        
+        # If, for instance, we change the order and look at the side squares before the corner squares
+        # the computer will sometimes lose :)
+        # I figured this out by letting the computer play itself over and over.
+
+        # Just like War Games :)
+
+        # my idea, is we can let the player enter this list of values before the game starts
+        # to determine the difficulty of the AI
+        # and then we can list which strategies work the best :)))))
+
         moves = [self.findWinningMove(self.player2), self.findWinningMove(self.player1), 4, 0, 2, 6, 8, 1, 7, 3, 5]
+
         for m in moves:
             if m != self.invalidMove and self.isSquareEmpty(m):
                 return m
