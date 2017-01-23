@@ -1,187 +1,451 @@
-# Tic Tac Toe
-
+# class represents a state of a tic tac toe game.
+# 0 represents an unfilled square
+# 1 represents an X
+# 2 represents an O
+import copy
 import random
 
-def drawBoard(board):
-    # This function prints out the board that it was passed.
+class ExperimentGenerator:
+    
+    def __init__(self):
+        self.board = self.generateBoard()
+        self.history = [copy.deepcopy(self.board)]
 
-    # "board" is a list of 10 strings representing the board (ignore index 0)
-    print('   |   |')
-    print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
-    print('   |   |')
-    print('-----------')
-    print('   |   |')
-    print(' ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
-    print('   |   |')
-    print('-----------')
-    print('   |   |')
-    print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
-    print('   |   |')
+    def setBoard(self,board):
+        if board == 0:
+            print "zero board"
+        self.board = board
+        self.history.append(copy.deepcopy(self.board))
 
-def inputPlayerLetter():
-    # Lets the player type which letter they want to be.
-    # Returns a list with the player's letter as the first item, and the computer's letter as the second.
-    letter = ''
-    while not (letter == 'X' or letter == 'O'):
-        print('Do you want to be X or O?')
-        letter = input().upper()
+    def generateBoard(self):
+        board = [ [0,0,0],
+                  [0,0,0],
+                  [0,0,0] ]
+        return board
 
-    # the first element in the tuple is the player's letter, the second is the computer's letter.
-    if letter == 'X':
-        return ['X', 'O']
-    else:
-        return ['O', 'X']
+    def getWinner(self, board = 0):
+        if board == 0:
+            board = self.board
 
-def whoGoesFirst():
-    # Randomly choose the player who goes first.
-    if random.randint(0, 1) == 0:
-        return 'computer'
-    else:
-        return 'player'
+        if self.isDone(board):
+            
+            possibilities = []
+            for row in self.getRows(board):
+                possibilities.append(row)
+            for column in self.getColumns(board):
+                possibilities.append(column)
+            for diagonal in self.getDiagonals(board):
+                possibilities.append(diagonal)
+            
+            for possibility in possibilities:
+                zeros = 0
+                Xs = 0
+                Os = 0
+                for entry in possibility:
+                    if entry == 0:
+                        zeros += 1
+                    elif entry == 1:
+                        Xs += 1
+                    elif entry == 2:
+                        Os += 1
+            
+                if Xs == 3:
+                    return 1
+                elif Os == 3:
+                    return 2
 
-def playAgain():
-    # This function returns True if the player wants to play again, otherwise it returns False.
-    print('Do you want to play again? (yes or no)')
-    return input().lower().startswith('y')
-
-def makeMove(board, letter, move):
-    board[move] = letter
-
-def isWinner(bo, le):
-    # Given a board and a player's letter, this function returns True if that player has won.
-    # We use bo instead of board and le instead of letter so we don't have to type as much.
-    return ((bo[7] == le and bo[8] == le and bo[9] == le) or # across the top
-    (bo[4] == le and bo[5] == le and bo[6] == le) or # across the middle
-    (bo[1] == le and bo[2] == le and bo[3] == le) or # across the bottom
-    (bo[7] == le and bo[4] == le and bo[1] == le) or # down the left side
-    (bo[8] == le and bo[5] == le and bo[2] == le) or # down the middle
-    (bo[9] == le and bo[6] == le and bo[3] == le) or # down the right side
-    (bo[7] == le and bo[5] == le and bo[3] == le) or # diagonal
-    (bo[9] == le and bo[5] == le and bo[1] == le)) # diagonal
-
-def getBoardCopy(board):
-    # Make a duplicate of the board list and return it the duplicate.
-    dupeBoard = []
-
-    for i in board:
-        dupeBoard.append(i)
-
-    return dupeBoard
-
-def isSpaceFree(board, move):
-    # Return true if the passed move is free on the passed board.
-    return board[move] == ' '
-
-def getPlayerMove(board):
-    # Let the player type in his move.
-    move = ' '
-    while move not in '1 2 3 4 5 6 7 8 9'.split() or not isSpaceFree(board, int(move)):
-        print('What is your next move? (1-9)')
-        move = input()
-    return int(move)
-
-def chooseRandomMoveFromList(board, movesList):
-    # Returns a valid move from the passed list on the passed board.
-    # Returns None if there is no valid move.
-    possibleMoves = []
-    for i in movesList:
-        if isSpaceFree(board, i):
-            possibleMoves.append(i)
-
-    if len(possibleMoves) != 0:
-        return random.choice(possibleMoves)
-    else:
-        return None
-
-def getComputerMove(board, computerLetter):
-    # Given a board and the computer's letter, determine where to move and return that move.
-    if computerLetter == 'X':
-        playerLetter = 'O'
-    else:
-        playerLetter = 'X'
-
-    # Here is our algorithm for our Tic Tac Toe AI:
-    # First, check if we can win in the next move
-    for i in range(1, 10):
-        copy = getBoardCopy(board)
-        if isSpaceFree(copy, i):
-            makeMove(copy, computerLetter, i)
-            if isWinner(copy, computerLetter):
-                return i
-
-    # Check if the player could win on his next move, and block them.
-    for i in range(1, 10):
-        copy = getBoardCopy(board)
-        if isSpaceFree(copy, i):
-            makeMove(copy, playerLetter, i)
-            if isWinner(copy, playerLetter):
-                return i
-
-    # Try to take one of the corners, if they are free.
-    move = chooseRandomMoveFromList(board, [1, 3, 7, 9])
-    if move != None:
-        return move
-
-    # Try to take the center, if it is free.
-    if isSpaceFree(board, 5):
-        return 5
-
-    # Move on one of the sides.
-    return chooseRandomMoveFromList(board, [2, 4, 6, 8])
-
-def isBoardFull(board):
-    # Return True if every space on the board has been taken. Otherwise return False.
-    for i in range(1, 10):
-        if isSpaceFree(board, i):
-            return False
-    return True
-
-
-print('Welcome to Tic Tac Toe!')
-
-while True:
-    # Reset the board
-    theBoard = [' '] * 10
-    playerLetter, computerLetter = inputPlayerLetter()
-    turn = whoGoesFirst()
-    print('The ' + turn + ' will go first.')
-    gameIsPlaying = True
-
-    while gameIsPlaying:
-        if turn == 'player':
-            # Player's turn.
-            drawBoard(theBoard)
-            move = getPlayerMove(theBoard)
-            makeMove(theBoard, playerLetter, move)
-
-            if isWinner(theBoard, playerLetter):
-                drawBoard(theBoard)
-                print('Hooray! You have won the game!')
-                gameIsPlaying = False
-            else:
-                if isBoardFull(theBoard):
-                    drawBoard(theBoard)
-                    print('The game is a tie!')
-                    break
-                else:
-                    turn = 'computer'
+            return 0
 
         else:
-            # Computer's turn.
-            move = getComputerMove(theBoard, computerLetter)
-            makeMove(theBoard, computerLetter, move)
+            print "Game not done, cannot determine winner"
 
-            if isWinner(theBoard, computerLetter):
-                drawBoard(theBoard)
-                print('The computer has beaten you! You lose.')
-                gameIsPlaying = False
-            else:
-                if isBoardFull(theBoard):
-                    drawBoard(theBoard)
-                    print('The game is a tie!')
-                    break
+    def isDone(self, board = 0):
+        if board == 0:
+            board = self.board
+
+        done = True
+        for y in range(0,3):
+            for x in range(0,3):
+                if board[y][x] == 0:
+                    done = False
+                            
+        possibilities = []
+        for row in self.getRows(board):
+            possibilities.append(row)
+        for column in self.getColumns(board):
+            possibilities.append(column)
+        for diagonal in self.getDiagonals(board):
+            possibilities.append(diagonal)
+            
+        for possibility in possibilities:
+            zeros = 0
+            Xs = 0
+            Os = 0
+            for entry in possibility:
+                if entry == 0:
+                    zeros += 1
+                elif entry == 1:
+                    Xs += 1
+                elif entry == 2:
+                    Os += 1
+            
+            if Xs == 3 or Os == 3:
+                done = True
+                
+        return done
+
+    def getFeatures(self, board = 0):
+        if board == 0:
+            board = self.board
+        #x1 = number of instances of 2 x's in a row with an open subsequent square
+        #x2 = number of instances of 2 o's in a row with an open subsequent square
+        #x3 = number of instances of an x in an open row or column
+        #x4 = number of instances of an o in an open row or column
+        #x5 = number of instances of 3 xs in a row
+        #x6 = number of instances of 3 os in a row
+        possibilities = []
+        for row in self.getRows(board):
+            possibilities.append(row)
+        for column in self.getColumns(board):
+            possibilities.append(column)
+        for diagonal in self.getDiagonals(board):
+            possibilities.append(diagonal)
+
+        x1 = 0      
+        x2 = 0
+        x3 = 0
+        x4 = 0
+        x5 = 0
+        x6 = 0
+        for possibility in possibilities:
+            zeros = 0
+            Xs = 0
+            Os = 0
+            for entry in possibility:
+                if entry == 0:
+                    zeros += 1
+                elif entry == 1:
+                    Xs += 1
+                elif entry == 2:
+                    Os += 1
+            if Xs == 2 and zeros == 1:
+                x1 += 1
+            elif Os == 2 and zeros == 1:
+                x2 += 1
+            elif Xs == 1 and zeros == 2:
+                x3 += 1
+            elif Os == 1 and zeros == 2:
+                x4 += 1
+            elif Xs == 3:
+                x5 += 1
+            elif Os == 3:
+                x6 += 1
+
+        return x1,x2,x3,x4,x5,x6
+
+    def getRows(self, board = 0):
+        if board == 0:
+            board = self.board
+        return board
+    
+    def getColumns(self,board = 0):
+        if board == 0:
+            board = self.board
+
+        columns = []
+        for x in range(0,3):
+            column = []
+            column.append(board[0][x])
+            column.append(board[1][x])
+            column.append(board[2][x])
+            columns.append(column)
+
+        return columns
+
+    def getDiagonals(self,board = 0):
+        if board == 0:
+            board = self.board
+
+        diagonals = []
+
+        diagonal1 = []
+        diagonal1.append(board[2][0])
+        diagonal1.append(board[1][1])
+        diagonal1.append(board[0][2])
+        diagonals.append(diagonal1)
+
+        diagonal2 = []
+        diagonal2.append(board[0][0])
+        diagonal2.append(board[1][1])
+        diagonal2.append(board[2][2])
+        diagonals.append(diagonal2)
+
+        return diagonals
+
+    def getSuccessorsX(self):
+        successors = []
+        for y in range(0,3):
+            for x in range(0,3):
+                if self.board[y][x] == 0:
+                    successor = copy.deepcopy(self.board)
+                    successor[y][x] = 1
+                    successors.append(successor)
+        return successors
+
+    def getSuccessorsO(self):
+        successors = []
+        for y in range(0,3):
+            for x in range(0,3):
+                if self.board[y][x] == 0:
+                    successor = copy.deepcopy(self.board)
+                    successor[y][x] = 2
+                    successors.append(successor)
+        return successors
+
+    def getHistory(self):
+        return self.history
+
+    def setX(self,x,y):
+        self.board[y][x] = 1
+        self.history.append(copy.deepcopy(self.board))
+
+    def setO(self,x,y):
+        self.board[y][x] = 2
+
+    def printBoard(self, board = 0):
+        if board == 0:
+            board = self.board
+
+        sboard = []
+        for row in board:
+            srow = []
+            for entry in row:
+                if entry == 0:
+                    srow.append(' ')
+                elif entry == 1:
+                    srow.append('X')
+                elif entry == 2:
+                    srow.append('O')
+            sboard.append(srow)
+
+        print ""
+        print sboard[0][0] + '|' + sboard[0][1] + '|' + sboard[0][2]
+        print "-----"
+        print sboard[1][0] + '|' + sboard[1][1] + '|' + sboard[1][2]
+        print "-----"
+        print sboard[2][0] + '|' + sboard[2][1] + '|' + sboard[2][2]
+        print ""
+
+class PerformanceSystem:
+    def __init__(self,board,hypothesis,mode = 1):
+        self.board = board
+        self.hypothesis = hypothesis
+        self.mode = mode
+        self.history = []        
+        self.updateConstant = .1
+
+    def setUpdateConstant(self, constant):
+        self.updateConstant = constant
+
+    def evaluateBoard(self,board):
+        x1,x2,x3,x4,x5,x6 = self.board.getFeatures(board)
+
+        w0,w1,w2,w3,w4,w5,w6 = self.hypothesis
+
+        return w0 + w1*x1 + w2*x2 + w3*x3 + w4*x4 + w5*x5 + w6*x6
+
+    def setBoard(self, board):
+        self.board = board
+
+    def getBoard(self):
+        return self.board
+
+    def setHypothesis(self, hypothesis):
+        self.hypothesis = hypothesis
+
+    def getHypothesis(self):
+        return self.hypothesis
+
+    def chooseRandom(self):
+        if self.mode == 1:
+            successors = self.board.getSuccessorsX()
+        else:
+            successors = self.board.getSuccessorsO()
+            
+        randomBoard = successors[random.randint(0,len(successors)-1)]
+        self.board.setBoard(randomBoard)
+
+    def chooseMove(self):
+        if self.mode == 1:
+            successors = self.board.getSuccessorsX()
+        else:
+            successors = self.board.getSuccessorsO()
+
+        bestSuccessor = successors[0]
+        bestValue = self.evaluateBoard(bestSuccessor)
+
+        for successor in successors:
+            value = self.evaluateBoard(successor)
+            if value > bestValue:
+                bestValue = value
+                bestSuccessor = successor
+
+        self.board.setBoard(bestSuccessor)
+
+
+    def updateWeights(self,history,trainingExamples):
+        for i in range(0,len(history)):
+            w0,w1,w2,w3,w4,w5,w6 = self.hypothesis
+            vEst = self.evaluateBoard(history[i])
+            x1,x2,x3,x4,x5,x6 = trainingExamples[i][0]
+            vTrain = trainingExamples[i][1]            
+
+            w0 = w0 + self.updateConstant*(vTrain - vEst)
+            w1 = w1 + self.updateConstant*(vTrain - vEst)*x1
+            w2 = w2 + self.updateConstant*(vTrain - vEst)*x2
+            w3 = w3 + self.updateConstant*(vTrain - vEst)*x3
+            w4 = w4 + self.updateConstant*(vTrain - vEst)*x4
+            w5 = w5 + self.updateConstant*(vTrain - vEst)*x5
+            w6 = w6 + self.updateConstant*(vTrain - vEst)*x6
+
+            self.hypothesis = w0,w1,w2,w3,w4,w5,w6
+            
+
+class Critic:
+    def __init__(self,hypothesis,mode = 1):
+        self.hypothesis = hypothesis
+        self.mode = mode
+        self.checker = ExperimentGenerator()
+        
+    def evaluateBoard(self,board):
+        x1,x2,x3,x4,x5,x6 = self.checker.getFeatures(board)
+
+        w0,w1,w2,w3,w4,w5,w6 = self.hypothesis
+
+        return w0 + w1*x1 + w2*x2 + w3*x3 + w4*x4 + w5*x5 + w6*x6
+
+    def setHypothesis(self,hypothesis):
+        self.hypothesis = hypothesis
+
+    def setMode(self,mode):
+        self.mode = mode
+
+    def getTrainingExamples(self,history):
+        trainingExamples = []
+
+        for i in range(0,len(history)):
+            if(self.checker.isDone(history[i])):
+                if(self.checker.getWinner(history[i]) == self.mode):
+                    trainingExamples.append([self.checker.getFeatures(history[i]), 100])
+                elif(self.checker.getWinner(history[i]) == 0):
+                    trainingExamples.append([self.checker.getFeatures(history[i]), 0])
                 else:
-                    turn = 'player'
+                    trainingExamples.append([self.checker.getFeatures(history[i]), -100])
+            else:
+                if i+2 >= len(history):
+                    if(self.checker.getWinner(history[len(history)-1]) == 0):
+                        trainingExamples.append([self.checker.getFeatures(history[i]), 0])
+                    else:
+                        trainingExamples.append([self.checker.getFeatures(history[i]), -100])
+                else:
+                    trainingExamples.append([self.checker.getFeatures(history[i]), self.evaluateBoard(history[i+2])])
 
-    if not playAgain():
-        break
+        return trainingExamples
+
+    
+board = ExperimentGenerator()
+hypothesis1 = (.5,.5,.5,.5,.5,.5,.5)
+hypothesis2 = (.5,.5,.5,.5,.5,.5,.5)
+player1 = PerformanceSystem(board,hypothesis1,1)
+player2 = PerformanceSystem(board,hypothesis2,2)
+player2.setUpdateConstant(.4)
+critic1 = Critic(hypothesis1,1)
+critic2 = Critic(hypothesis2,2)
+
+xwins = 0
+owins = 0
+draws = 0
+
+for i in range(0,10000):
+    board = ExperimentGenerator()
+    player1.setBoard(board)
+    player2.setBoard(board)
+
+    while(not board.isDone()):
+        #player1.chooseRandom()
+        player1.chooseMove()
+        if board.isDone():
+            break
+        #player2.chooseMove()
+        player2.chooseRandom()
+    board.printBoard()
+
+    winner = board.getWinner()
+        
+    if(winner == 1):
+        print "X wins"
+        xwins += 1
+    elif(winner == 2):
+        print "O wins"
+        owins += 1
+    elif(winner == 0):
+        print "game is a draw"
+        draws += 1
+
+    critic1.setHypothesis(player1.getHypothesis())
+    critic2.setHypothesis(player2.getHypothesis())
+
+    player1.updateWeights(board.getHistory(),critic1.getTrainingExamples(board.getHistory()))
+    player2.updateWeights(board.getHistory(),critic2.getTrainingExamples(board.getHistory()))
+
+print "X won " + str(xwins) + " games."
+print "O won " + str(owins) + " games."
+print "There were " + str(draws) + " draws."
+
+while True:
+    board = ExperimentGenerator()
+    player1.setBoard(board)
+    player2.setBoard(board)
+    
+    while(not board.isDone()):
+        #board.printBoard()
+        #xval = input("Enter xcoordinate: ")
+        #yval = input("Enter ycoordinate: ")
+        #board.setX(xval,yval)
+
+        #player1.chooseRandom()
+        player1.chooseMove()
+        if board.isDone():
+            break
+
+        board.printBoard()
+        xval = input("Enter xcoordinate: ")
+        yval = input("Enter ycoordinate: ")
+        board.setO(xval,yval)
+
+
+        #player2.chooseMove()
+        #player2.chooseRandom()
+    board.printBoard()
+
+    winner = board.getWinner()
+        
+    if(winner == 1):
+        print "X wins"
+        xwins += 1
+    elif(winner == 2):
+        print "O wins"
+        owins += 1
+    elif(winner == 0):
+        print "game is a draw"
+        draws += 1
+
+    critic1.setHypothesis(player1.getHypothesis())
+    critic2.setHypothesis(player2.getHypothesis())
+
+    player1.updateWeights(board.getHistory(),critic1.getTrainingExamples(board.getHistory()))
+    player2.updateWeights(board.getHistory(),critic2.getTrainingExamples(board.getHistory()))
+
+
+#print player1.getHypothesis()
+#print player2.getHypothesis()
