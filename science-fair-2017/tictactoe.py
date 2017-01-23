@@ -59,24 +59,12 @@ def isStalemate():
             return False
     return True
 
-def getRandomMove():
-    for square in range(0, 9):
-        if isSquareEmpty(square):
-            return square
-    return invalidMove
-
 def getComputerMove():
-    winningComputerMove = findWinningMove(computerPlayer)
-    winningHumanMove = findWinningMove(humanPlayer)
-    
-    if winningComputerMove != invalidMove:
-        return winningComputerMove
-    elif winningHumanMove != invalidMove:
-        return winningHumanMove
-    elif isSquareEmpty(4):
-        return 4
-    else: 
-        return getRandomMove()
+    moves = [findWinningMove(computerPlayer), findWinningMove(humanPlayer), 4, 0, 2, 6, 8, 1, 7, 3, 5]
+    for m in moves:
+        if m != invalidMove and isSquareEmpty(m):
+            return m
+    return invalidMove
     
 def getPlayerMove(player):
     square = raw_input("what's your move, " + player + "?")
@@ -93,7 +81,6 @@ def printBoard():
     print squares[6] + '|' + squares[7] + '|' + squares[8]
 
 #game starts here
-#5 9 3 7 wins?
 
 print 'Instructions: these are the rules'
 
