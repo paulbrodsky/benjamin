@@ -69,9 +69,9 @@ def getComputerMove():
     winningComputerMove = findWinningMove(computerPlayer)
     winningHumanMove = findWinningMove(humanPlayer)
     
-    if winningComputerMove > invalidMove:
+    if winningComputerMove != invalidMove:
         return winningComputerMove
-    elif winningHumanMove > invalidMove:
+    elif winningHumanMove != invalidMove:
         return winningHumanMove
     elif isSquareEmpty(4):
         return 4
