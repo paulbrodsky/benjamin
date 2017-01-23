@@ -1,6 +1,8 @@
 #global variables
 
 squares = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+invalidMove = -1
+
 humanPlayer = 'X'
 computerPlayer = 'O'
 
@@ -49,7 +51,7 @@ def findWinningMove(player):
     or isWinningMove(player, 8, 6, 7) \
     or isWinningMove(player, 8, 0, 4):
         return 8
-    return -1
+    return invalidMove
 
 def isStalemate():
     for square in range(0, 9):
@@ -61,15 +63,15 @@ def getRandomMove():
     for square in range(0, 9):
         if isSquareEmpty(square):
             return square
-    return -1
+    return invalidMove
 
 def getComputerMove():
     winningComputerMove = findWinningMove(computerPlayer)
     winningHumanMove = findWinningMove(humanPlayer)
     
-    if winningComputerMove > -1:
+    if winningComputerMove > invalidMove:
         return winningComputerMove
-    elif winningHumanMove > -1:
+    elif winningHumanMove > invalidMove:
         return winningHumanMove
     elif isSquareEmpty(4):
         return 4
@@ -100,7 +102,7 @@ currentPlayer = humanPlayer
 while True:
     printBoard()
     
-    playerMove = -1
+    playerMove = invalidMove
     
     if currentPlayer == humanPlayer:
         playerMove = getPlayerMove(currentPlayer)
