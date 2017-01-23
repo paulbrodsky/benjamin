@@ -1,8 +1,21 @@
 class TicTacToe:
 
     invalidMove = -1
+
     player1 = 'X'
     player2 = 'O'
+
+    solutions = [
+      [[1, 2], [3, 6], [4, 8]],
+      [[0, 2], [4, 7]],
+      [[0, 1], [5, 8], [4, 6]],
+      [[4, 5], [0, 6]],
+      [[3, 5], [1, 7], [0, 8], [2, 6]],
+      [[2, 8], [3, 4]],
+      [[0, 3], [7, 8], [4, 2]],
+      [[1, 4], [6, 8]],
+      [[2, 5], [6, 7], [0, 4]],
+    ]
 
     def __init__(self):
         self.squares = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -17,39 +30,10 @@ class TicTacToe:
         and self.squares[otherSquare2] == player
 
     def findWinningMove(self, player):
-        if self.isWinningMove(player, 0, 1, 2) \
-        or self.isWinningMove(player, 0, 3, 6) \
-        or self.isWinningMove(player, 0, 4, 8):
-            return 0
-        elif self.isWinningMove(player, 1, 0, 2) \
-        or self.isWinningMove(player, 1, 4, 7):
-            return 1
-        elif self.isWinningMove(player, 2, 0, 1) \
-        or self.isWinningMove(player, 2, 5, 8) \
-        or self.isWinningMove(player, 2, 4, 6):
-            return 2
-        elif self.isWinningMove(player, 3, 4, 5) \
-        or self.isWinningMove(player, 3, 0, 6):
-            return 3
-        elif self.isWinningMove(player, 4, 3, 5) \
-        or self.isWinningMove(player, 4, 1, 7) \
-        or self.isWinningMove(player, 4, 0, 8) \
-        or self.isWinningMove(player, 4, 2, 6):
-            return 4
-        elif self.isWinningMove(player, 5, 2, 8) \
-        or self.isWinningMove(player, 5, 3, 4):
-            return 5
-        elif self.isWinningMove(player, 6, 0, 3) \
-        or self.isWinningMove(player, 6, 7, 8) \
-        or self.isWinningMove(player, 6, 4, 2):
-            return 6
-        elif self.isWinningMove(player, 7, 1, 4) \
-        or self.isWinningMove(player, 7, 6, 8):
-            return 7
-        elif self.isWinningMove(player, 8, 2, 5) \
-        or self.isWinningMove(player, 8, 6, 7) \
-        or self.isWinningMove(player, 8, 0, 4):
-            return 8
+        for square in range(0, 9):
+          for sol in self.solutions[square]:
+            if self.isWinningMove(player, square, sol[0], sol[1]):
+              return square
         return self.invalidMove
 
     def isStalemate(self):
@@ -130,5 +114,5 @@ while True:
     game = TicTacToe()
     game.play()
 
-    if raw_input("Do you want to play again? (yes/no)") != 'yes':
+    if raw_input("Click return to play again") != '':
         break
