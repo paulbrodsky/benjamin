@@ -42,35 +42,16 @@ class TicTacToe:
                 return False
         return True
 
-    def getComputerMove(self):
-        
-        # This single line of code below determines the intelligence of the AI.
-        # It is a list of squares to look at for a valid move,
-        # ordered by the best move first and worst move last.
-        # The computer will then go through each possibility in order,
-        # and choose the first one that is a valid move.
+    def getComputerMove(self, difficulty):
+        moves = [
+          [1, 7, 3, 5, 4, 0, 2, 6, 8],
+          [self.findWinningMove(self.player2), self.findWinningMove(self.player1), 4, 1, 0, 5, 2, 6, 8, 1, 7, 3, 5],
+          [self.findWinningMove(self.player2), self.findWinningMove(self.player1), 4, 0, 2, 6, 8, 1, 7, 3, 5],
+        ]
 
-        # The following is the optimal order:
+        print moves[difficulty]
 
-        # 1. Find a winning move for itself
-        # 2. Find a blocking move to prevent the opponent from winning
-        # 3. Center square
-        # 4. Corner squares
-        # 5. Side and top squares
-        
-        # If, for instance, we change the order and look at the side squares before the corner squares
-        # the computer will sometimes lose :)
-        # I figured this out by letting the computer play itself over and over.
-
-        # Just like War Games :)
-
-        # my idea, is we can let the player enter this list of values before the game starts
-        # to determine the difficulty of the AI
-        # and then we can list which strategies work the best :)))))
-
-        moves = [self.findWinningMove(self.player2), self.findWinningMove(self.player1), 4, 0, 2, 6, 8, 1, 7, 3, 5]
-
-        for m in moves:
+        for m in moves[difficulty]:
             if m != self.invalidMove and self.isSquareEmpty(m):
                 return m
         return self.invalidMove
@@ -96,6 +77,11 @@ class TicTacToe:
         
         isPlayer1Human = raw_input('Is player 1 human(1) or a computer(2)?') == '1'
         isPlayer2Human = raw_input('Is player 2 human(1) or a computer(2)?') == '1'
+        difficulty = 2
+
+        if not isPlayer1Human or not isPlayer2Human:
+          difficulty = int(raw_input('Choose a difficulty: Easy(0) Normal(1) Hard(2)'))
+
         currentPlayer = self.player1
 
         while True:
@@ -108,7 +94,7 @@ class TicTacToe:
             elif currentPlayer == self.player2 and isPlayer2Human == True:
                 playerMove = self.getPlayerMove(currentPlayer)
             else:
-                playerMove = self.getComputerMove()
+                playerMove = self.getComputerMove(difficulty)
 
             if not self.isValidMove(playerMove):
                 print 'Not a valid move, please try again'
