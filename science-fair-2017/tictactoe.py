@@ -75,11 +75,15 @@ class TicTacToe:
         return square in range(0, 9) and self.isSquareEmpty(square)
 
     def printBoard(self):
+        print ''        
         print self.squares[0] + '|' + self.squares[1] + '|' + self.squares[2]
         print self.squares[3] + '|' + self.squares[4] + '|' + self.squares[5]
         print self.squares[6] + '|' + self.squares[7] + '|' + self.squares[8]
+        print ''        
 
     def play(self):
+        print "Let's play Tic Tac Toe!\n"
+        
         isPlayer1Human = raw_input('Is player 1 human(1) or a computer(2)?') == '1'
         isPlayer2Human = raw_input('Is player 2 human(1) or a computer(2)?') == '1'
         currentPlayer = self.player1
@@ -122,8 +126,6 @@ class TicTacToe:
                 currentPlayer = self.player1
 
 while True:
-
-    print "Let's play Tic Tac Toe!"
 
     game = TicTacToe()
     game.play()
