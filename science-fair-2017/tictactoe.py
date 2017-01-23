@@ -1,181 +1,133 @@
-def areSquaresMarked(player, squares, f, s, t):
-    return squares[f] == player and squares[s] == player and squares[t] == player
-    
-def areAnyTwoSquaresMarked(player, squares, f, s, t):
-    row = [squares[f], squares[s], squares[t]]
-    filteredItems = list(filter(lambda s: s == player, row))
-    return len(filteredItems) == 2
-    
-def playerHasMovedOnce(player, squares):
-    filteredItems = list(filter(lambda s: s == player, squares))
-    return len(filteredItems) == 1
+#global variables
 
-def playerHasCenter(player, squares):
-    return squares[4] == player
+squares = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+humanPlayer = 'X'
+computerPlayer = 'O'
 
-def isPlayerGoingToWin(player, squares):
-    return areAnyTwoSquaresMarked(player, squares, 0, 1, 2) \
-    or areAnyTwoSquaresMarked(player, squares, 3, 4, 5) \
-    or areAnyTwoSquaresMarked(player, squares, 6, 7, 8) \
-    or areAnyTwoSquaresMarked(player, squares, 0, 4, 8) \
-    or areAnyTwoSquaresMarked(player, squares, 2, 4, 6) \
-    or areAnyTwoSquaresMarked(player, squares, 0, 3, 6) \
-    or areAnyTwoSquaresMarked(player, squares, 1, 4, 7) \
-    or areAnyTwoSquaresMarked(player, squares, 2, 5, 8)
+#functions
 
-def findWinningMove(player, squares):
-    if not squares[0] == player1 and not squares[0] == player2 and squares[1] == player and squares[2] == player:
+def isSquareEmpty(square):
+    return not squares[square] == humanPlayer \
+    and not squares[square] == computerPlayer
+
+def isWinningMove(player, square, otherSquare1, otherSquare2):
+    return isSquareEmpty(square) \
+    and squares[otherSquare1] == player \
+    and squares[otherSquare2] == player
+
+def findWinningMove(player):
+    if isWinningMove(player, 0, 1, 2) \
+    or isWinningMove(player, 0, 3, 6) \
+    or isWinningMove(player, 0, 4, 8):
         return 0
-    if not squares[0] == player1 and not squares[0] == player2 and squares[3] == player and squares[6] == player:
-        return 0
-    if not squares[0] == player1 and not squares[0] == player2 and squares[4] == player and squares[8] == player:
-        return 0
-
-    if not squares[1] == player1 and not squares[1] == player2 and squares[0] == player and squares[2] == player:
+    elif isWinningMove(player, 1, 0, 2) \
+    or isWinningMove(player, 1, 4, 7):
         return 1
-    if not squares[1] == player1 and not squares[1] == player2 and squares[4] == player and squares[7] == player:
-        return 1
-
-    if not squares[2] == player1 and not squares[2] == player2 and squares[0] == player and squares[1] == player:
+    elif isWinningMove(player, 2, 0, 1) \
+    or isWinningMove(player, 2, 5, 8) \
+    or isWinningMove(player, 2, 4, 6):
         return 2
-    if not squares[2] == player1 and not squares[2] == player2 and squares[5] == player and squares[8] == player:
-        return 2
-    if not squares[2] == player1 and not squares[2] == player2 and squares[4] == player and squares[6] == player:
-        return 2
-
-    if not squares[3] == player1 and not squares[3] == player2 and squares[0] == player and squares[6] == player:
+    elif isWinningMove(player, 3, 4, 5) \
+    or isWinningMove(player, 3, 0, 6):
         return 3
-    if not squares[3] == player1 and not squares[3] == player2 and squares[4] == player and squares[5] == player:
-        return 3
-
-    if not squares[4] == player1 and not squares[4] == player2 and squares[3] == player and squares[5] == player:
+    elif isWinningMove(player, 4, 3, 5) \
+    or isWinningMove(player, 4, 1, 7) \
+    or isWinningMove(player, 4, 0, 8) \
+    or isWinningMove(player, 4, 2, 6):
         return 4
-    if not squares[4] == player1 and not squares[4] == player2 and squares[1] == player and squares[7] == player:
-        return 4
-    if not squares[4] == player1 and not squares[4] == player2 and squares[0] == player and squares[8] == player:
-        return 4
-    if not squares[4] == player1 and not squares[4] == player2 and squares[2] == player and squares[6] == player:
-        return 4
-    
-    if not squares[5] == player1 and not squares[5] == player2 and squares[3] == player and squares[4] == player:
+    elif isWinningMove(player, 5, 2, 8) \
+    or isWinningMove(player, 5, 3, 4):
         return 5
-    if not squares[5] == player1 and not squares[5] == player2 and squares[2] == player and squares[8] == player:
-        return 5
-
-    if not squares[6] == player1 and not squares[6] == player2 and squares[7] == player and squares[8] == player:
+    elif isWinningMove(player, 6, 0, 3) \
+    or isWinningMove(player, 6, 7, 8) \
+    or isWinningMove(player, 6, 4, 2):
         return 6
-    if not squares[6] == player1 and not squares[6] == player2 and squares[2] == player and squares[4] == player:
-        return 6
-    if not squares[6] == player1 and not squares[6] == player2 and squares[0] == player and squares[3] == player:
-        return 6
-
-    if not squares[7] == player1 and not squares[7] == player2 and squares[6] == player and squares[8] == player:
+    elif isWinningMove(player, 7, 1, 4) \
+    or isWinningMove(player, 7, 6, 8):
         return 7
-    if not squares[7] == player1 and not squares[7] == player2 and squares[4] == player and squares[1] == player:
-        return 7
-    
-    if not squares[8] == player1 and not squares[8] == player2 and squares[7] == player and squares[6] == player:
+    elif isWinningMove(player, 8, 2, 5) \
+    or isWinningMove(player, 8, 6, 7) \
+    or isWinningMove(player, 8, 0, 4):
         return 8
-    if not squares[8] == player1 and not squares[8] == player2 and squares[5] == player and squares[2] == player:
-        return 8
-    if not squares[8] == player1 and not squares[8] == player2 and squares[4] == player and squares[0] == player:
-        return 8
-
     return -1
 
-def getRandomMove(squares):
-    for x in range(0, 9):
-        if not squares[x] == player1 and not squares[x] == 'Y':
-            return x
-    return -1
-
-def getComputerMove(squares):
-    if playerHasMovedOnce(player1, squares):
-        if playerHasCenter(player1, squares):
-            return 7
-        else:
-            return 5
-    elif isPlayerGoingToWin(player2, squares):
-        return findWinningMove(player2, squares) + 1
-        
-    elif isPlayerGoingToWin(player1, squares):
-        return findWinningMove(player1, squares) + 1
-    else: 
-        return getRandomMove(squares)
-    
-def getPlayerMove(player):
-    number = raw_input("what's your move, " + player + "?")
-    number = int(number)
-  
-    if number < 1 or number > 9:
-        print "hey stop that and type the right number"
-        return -1
-        
-    return number
-
-def isWinner(player, squares):
-    return areSquaresMarked(player, squares, 0, 1, 2) \
-    or areSquaresMarked(player, squares, 3, 4, 5) \
-    or areSquaresMarked(player, squares, 6, 7, 8) \
-    or areSquaresMarked(player, squares, 0, 4, 8) \
-    or areSquaresMarked(player, squares, 2, 4, 6) \
-    or areSquaresMarked(player, squares, 0, 3, 6) \
-    or areSquaresMarked(player, squares, 1, 4, 7) \
-    or areSquaresMarked(player, squares, 2, 5, 8)
-
-def isGameTied(squares):
-    for x in range(0, 9):
-        if squares[x] != player1 and squares[x] != player2:
+def isStalemate():
+    for square in range(0, 9):
+        if isSquareEmpty(square):
             return False
     return True
 
-def printBoard(squares):
+def getRandomMove():
+    for square in range(0, 9):
+        if isSquareEmpty(square):
+            return square
+    return -1
+
+def getComputerMove():
+    winningComputerMove = findWinningMove(computerPlayer)
+    winningHumanMove = findWinningMove(humanPlayer)
+    
+    if winningComputerMove > -1:
+        return winningComputerMove
+    elif winningHumanMove > -1:
+        return winningHumanMove
+    elif isSquareEmpty(4):
+        return 4
+    else: 
+        return getRandomMove()
+    
+def getPlayerMove(player):
+    square = raw_input("what's your move, " + player + "?")
+    #todo this will throw an error if the user enters a non numeric value
+    square = int(square)
+    return square - 1
+
+def isValidMove(square):
+    return square in range(0, 9) and isSquareEmpty(square)
+
+def printBoard():
     print squares[0] + '|' + squares[1] + '|' + squares[2]
     print squares[3] + '|' + squares[4] + '|' + squares[5]
     print squares[6] + '|' + squares[7] + '|' + squares[8]
 
-squares = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+#game starts here
+#5 9 3 7 wins?
 
 print 'Instructions: these are the rules'
 
-player1 = 'X'
-player2 = 'O'
-
-currentPlayer = player1
+currentPlayer = humanPlayer
 
 while True:
-    printBoard(squares)
+    printBoard()
     
-    number = -1
+    playerMove = -1
     
-    if currentPlayer == player1:
-        number = getPlayerMove(currentPlayer)
+    if currentPlayer == humanPlayer:
+        playerMove = getPlayerMove(currentPlayer)
     else: 
-        number = getComputerMove(squares)
-        print 'Computer has chosen ' + str(number)
-    
-    if number == -1:
-        continue
-    
-    number = number - 1
-    
-    squares[number] = currentPlayer
+        playerMove = getComputerMove()
 
-    if isWinner(currentPlayer, squares):
-        printBoard(squares)
-        print 'you won'
+    if not isValidMove(playerMove):
+        print 'Not a valid move, please try again'
+        continue
+
+    print currentPlayer + ' has chosen ' + str(playerMove + 1)
+
+    winningMove = findWinningMove(currentPlayer)
+    
+    squares[playerMove] = currentPlayer
+
+    if playerMove == winningMove:
+        printBoard()
+        print currentPlayer + ' has won!'
         break
     
-    if isGameTied(squares):
-        printBoard(squares)
-        print 'Game is tied'
+    if isStalemate():
+        printBoard()
+        print 'Stalemate'
         break
     
-    if currentPlayer == player1:
-       currentPlayer = player2
+    if currentPlayer == humanPlayer:
+       currentPlayer = computerPlayer
     else:
-       currentPlayer = player1
-    
-    
-  
-        
+       currentPlayer = humanPlayer
