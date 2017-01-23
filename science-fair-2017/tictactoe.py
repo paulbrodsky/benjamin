@@ -49,8 +49,6 @@ class TicTacToe:
           [self.findWinningMove(self.player2), self.findWinningMove(self.player1), 4, 0, 2, 6, 8, 1, 7, 3, 5],
         ]
 
-        print moves[difficulty]
-
         for m in moves[difficulty]:
             if m != self.invalidMove and self.isSquareEmpty(m):
                 return m
