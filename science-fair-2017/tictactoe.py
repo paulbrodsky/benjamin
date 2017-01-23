@@ -3,14 +3,14 @@
 squares = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 invalidMove = -1
 
-humanPlayer = 'X'
-computerPlayer = 'O'
+player1 = 'X'
+player2 = 'O'
 
 #functions
 
 def isSquareEmpty(square):
-    return not squares[square] == humanPlayer \
-    and not squares[square] == computerPlayer
+    return not squares[square] == player1 \
+    and not squares[square] == player2
 
 def isWinningMove(player, square, otherSquare1, otherSquare2):
     return isSquareEmpty(square) \
@@ -60,7 +60,7 @@ def isStalemate():
     return True
 
 def getComputerMove():
-    moves = [findWinningMove(computerPlayer), findWinningMove(humanPlayer), 4, 0, 2, 6, 8, 1, 7, 3, 5]
+    moves = [findWinningMove(player2), findWinningMove(player1), 4, 0, 2, 6, 8, 1, 7, 3, 5]
     for m in moves:
         if m != invalidMove and isSquareEmpty(m):
             return m
@@ -84,16 +84,21 @@ def printBoard():
 
 print 'Instructions: these are the rules'
 
-currentPlayer = humanPlayer
+isPlayer1Human = raw_input('Is player 1 human(1) or a computer(2)?') == '1'
+isPlayer2Human = raw_input('Is player 2 human(1) or a computer(2)?') == '1'
+
+currentPlayer = player1
 
 while True:
     printBoard()
     
     playerMove = invalidMove
-    
-    if currentPlayer == humanPlayer:
+
+    if currentPlayer == player1 and isPlayer1Human == True:
         playerMove = getPlayerMove(currentPlayer)
-    else: 
+    elif currentPlayer == player2 and isPlayer2Human == True:
+        playerMove = getPlayerMove(currentPlayer)
+    else:
         playerMove = getComputerMove()
 
     if not isValidMove(playerMove):
@@ -116,7 +121,7 @@ while True:
         print 'Stalemate'
         break
     
-    if currentPlayer == humanPlayer:
-       currentPlayer = computerPlayer
+    if currentPlayer == player1:
+       currentPlayer = player2
     else:
-       currentPlayer = humanPlayer
+       currentPlayer = player1
