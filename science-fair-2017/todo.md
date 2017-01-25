@@ -1,10 +1,6 @@
-1. ensure that the provided value is
-    - not null
-    - an integer value from 1 to 9
-    - not currently used
+Hangman
 
-2. Determine if there is a winner
-
-3. SIGN UUUP (did you sign up???)
-
-4. input() should be raw_input() when using python 2
+1. create a variable with a word that we will guess
+2. create a variable that is a list that will contain all the guessed letters
+3. ask the player for a letter and store it in the list created above.
+4. if the letter is in the word, print a message
