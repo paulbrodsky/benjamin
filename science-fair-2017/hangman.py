@@ -5,7 +5,7 @@ wordLetters = []
 if letter in word:
     print "you got it right"
 else:
-     print "you got it wrong"
+    print "you got it wrong"
 
-wordLetters.insert(0, letter)
+wordLetters.extend(letter)
 print wordLetters
