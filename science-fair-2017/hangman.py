@@ -2,8 +2,6 @@ word = 'apple'
 letter = raw_input("What letter would you like to guess?")
 wordLetters = []
 
-
-
 if letter in word:
     print "you got it right"
 else:
