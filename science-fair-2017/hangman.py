@@ -1,3 +1,4 @@
+maxMisses = 6
 
 def isWinner(hits, word):
     for letter in word:
@@ -5,20 +6,15 @@ def isWinner(hits, word):
             return False
     return True
     
-    
-    
-
 words = ["apple", "bannana", "mango"]
 
 for word in words:
+    print "Starting new game"
     
     hits = []
     misses = []
 
     while True: 
-
-        print "Starting new game"
-
         letter = raw_input("What letter would you like to guess?")
         
         if letter in hits or letter in misses:
@@ -33,6 +29,10 @@ for word in words:
             print "you got it wrong"
             misses.extend(letter)
             print misses
+        
+        if len(misses) >= maxMisses:
+            print "hey you lost bruh"
+            break
 
         if isWinner(hits, word):
             print "You won!"
