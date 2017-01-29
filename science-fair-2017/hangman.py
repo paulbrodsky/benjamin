@@ -5,16 +5,28 @@ def isWinner(hits, word):
         if letter not in hits:
             return False
     return True
-    
+
+def printBoard(hits, word):
+    board = ""
+    for letter in word:
+        if letter in hits:
+            board += " " + letter
+        else:
+            board += " _"
+    print board
+
 words = ["apple", "bannana", "mango"]
 
 for word in words:
-    print "Starting new game"
+    print "Starting new game, you have 6 tries."
     
     hits = []
     misses = []
 
-    while True: 
+    while True:
+
+        printBoard(hits, word)
+
         letter = raw_input("What letter would you like to guess?")
         
         if letter in hits or letter in misses:
@@ -22,13 +34,11 @@ for word in words:
             continue
 
         if letter in word:
-            print "you got it right"
             hits.extend(letter)
-            print hits
+            print "you got it right"
         else:
-            print "you got it wrong"
             misses.extend(letter)
-            print misses
+            print "you got it wrong, you have " + str(len(misses)) + " misses."
         
         if len(misses) >= maxMisses:
             print "hey you lost bruh"
@@ -36,6 +46,7 @@ for word in words:
 
         if isWinner(hits, word):
             print "You won!"
+            printBoard(hits, word)
             break
 
 
