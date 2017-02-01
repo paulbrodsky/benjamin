@@ -9,13 +9,16 @@ def isWinner(hits, word):
 
 def printBoard(hits, word):
     board = ""
-    board  += """-------------
-                 |           |
-                 |           O  
-                 |          /|\
-                 |          / \
-                 |
-                 --------------"""
+    board  += """
+-------------
+|           |
+|           O
+|          /|\\         
+|          / \\
+|
+-------------
+"""
+
     for letter in word:
         if letter in hits:
             board += " " + letter
