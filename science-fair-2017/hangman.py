@@ -1,3 +1,4 @@
+
 maxMisses = 6
 
 def isWinner(hits, word):
@@ -7,7 +8,15 @@ def isWinner(hits, word):
     return True
 
 def printBoard(hits, word):
-    board = ""
+    board = "----------------\r\n"
+            "|              |
+            "|              |
+            "|              O
+            |             /|\
+            |             / \
+            |
+            |
+            ______________"
     for letter in word:
         if letter in hits:
             board += " " + letter
@@ -19,6 +28,7 @@ words = ["apple", "bannana", "mango"]
 
 for word in words:
     print "Starting new game, you have 6 tries."
+    
     
     hits = []
     misses = []
