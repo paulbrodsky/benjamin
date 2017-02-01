@@ -8,15 +8,14 @@ def isWinner(hits, word):
     return True
 
 def printBoard(hits, word):
-    board = "----------------\r\n"
-            "|              |
-            "|              |
-            "|              O
-            |             /|\
-            |             / \
-            |
-            |
-            ______________"
+    board = ""
+    board  += """-------------
+                 |           |
+                 |           O  
+                 |          /|\
+                 |          / \
+                 |
+                 --------------"""
     for letter in word:
         if letter in hits:
             board += " " + letter
