@@ -9,7 +9,70 @@ def isWinner(hits, word):
 
 def printBoard(hits, word):
     board = ""
-    board  += """
+    numberMisses = len(misses)
+
+    if numberMisses == 0:
+        board += """
+-------------
+|           |
+|           
+|                  
+|          
+|
+-------------
+"""
+    elif numberMisses == 1:
+         board += """
+-------------
+|           |
+|           O
+|                   
+|          
+|
+-------------
+"""
+    elif numberMisses == 2:
+         board += """
+-------------
+|           |
+|           O
+|           |        
+|          
+|
+-------------
+"""
+    elif numberMisses == 3:
+         board += """
+-------------
+|           |
+|           O
+|          /|         
+|          
+|
+-------------
+"""
+    elif numberMisses == 4:
+         board += """
+-------------
+|           |
+|           O
+|          /|\\         
+|          
+|
+-------------
+"""
+    elif numberMisses == 5:
+         board += """
+-------------
+|           |
+|           O
+|          /|\\         
+|          / 
+|
+-------------
+"""
+    elif numberMisses == 6:
+         board += """
 -------------
 |           |
 |           O
@@ -18,6 +81,12 @@ def printBoard(hits, word):
 |
 -------------
 """
+        
+   
+
+        
+
+   
 
     for letter in word:
         if letter in hits:
