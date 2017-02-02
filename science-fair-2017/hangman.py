@@ -81,12 +81,6 @@ def printBoard(hits, word):
 |
 -------------
 """
-        
-   
-
-        
-
-   
 
     for letter in word:
         if letter in hits:
@@ -123,6 +117,7 @@ for word in words:
         
         if len(misses) >= maxMisses:
             print "hey you lost bruh"
+            print printBoard(hits, word)
             break
 
         if isWinner(hits, word):
