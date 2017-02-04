@@ -88,13 +88,10 @@ def printBoard(hits, word):
             board += " _"
     print board
 
-words = ["apple", "bannana", "mango"]
+words = ["apple", "bannana", "mango", "cucumber", "plum", "cherry", "pineapple"]
 
 for word in words:
-    print """
-Starting new game, you have 6 tries.
-"""
-    
+    print "Starting new game, you have 6 tries.\r\n"
     
     hits = []
     misses = []
@@ -103,45 +100,28 @@ Starting new game, you have 6 tries.
 
         printBoard(hits, word)
 
-        letter = raw_input("""
-What letter would you like to guess?
-""")
+        letter = raw_input("What letter would you like to guess?\r\n")
         
         if letter in hits or letter in misses:
-            print """
-You already guessed that!
-"""         
+            print "You already guessed that!\r\n"
             continue
 
         if letter in word:
             hits.extend(letter)
-            print """
-You got it right!
-"""
+            print "You got it right!\r\n"
         else:
             misses.extend(letter)
-            print """
-You got it wrong, you have """ + str(len(misses)) + """ misses."""
+            print "You got it wrong, you have " + str(len(misses)) + " misses.\r\n"
         
         if len(misses) >= maxMisses:
-            print """
-You Lost
-"""
+            print "You Lost\r\n"
             print printBoard(hits, word)
-            if raw_input("Press enter to play again") != "":
-                break
+            break
 
         if isWinner(hits, word):
-            print """
-You won!
-"""
-            printBoard(hits, word)
-            
-            if raw_input("Press enter to play again") != "":
-                break
+            print "You won!\r\n"
+            printBoard(hits, word)    
+            break
 
-
-
-
-
-
+    if raw_input("Press enter to play again") != "":
+        break
