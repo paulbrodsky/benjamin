@@ -22,7 +22,6 @@ E:u
 
 Example:
 ```
-subcipher c:/map.txt c:/message.txt c:/encrypted.txt
+subcipher encrypt c:/map.txt c:/message.txt c:/encrypted.txt
+subcipher decrypt c:/map.txt c:/encrypted.txt c:/decrypted.txt
 ```
-
-creates a new file called `c:/encrypted.txt`
