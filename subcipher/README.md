@@ -19,3 +19,10 @@ E:u
 1:Z
 2:Y
 ```
+
+Example:
+```
+subcipher c:/map.txt c:/message.txt c:/encrypted.txt
+```
+
+creates a new file called `c:/encrypted.txt`
