@@ -6,7 +6,12 @@ namespace subcipher
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            if (args[0] == "encrypt"){
+                Console.WriteLine("it worked");
+            } 
+            else{
+                System.Console.WriteLine("it didn't work");
+            }
         }
     }
 }
