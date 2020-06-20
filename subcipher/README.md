@@ -22,6 +22,11 @@ E:u
 
 Example:
 ```
-subcipher encrypt c:/map.txt c:/message.txt c:/encrypted.txt
-subcipher decrypt c:/map.txt c:/encrypted.txt c:/decrypted.txt
+dotnet run encrypt c:/map.txt c:/message.txt c:/encrypted.txt
+dotnet run decrypt c:/map.txt c:/encrypted.txt c:/decrypted.txt
 ```
+
+Tips
+
+https://docs.microsoft.com/en-us/dotnet/csharp/how-to/parse-strings-using-split
+https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=netcore-3.1
