@@ -1,4 +1,4 @@
-Substitution Cipher
+# Substitution Cipher
 
 I would like you to build a program that is able to encrypt and decrypt a file using a [Substitution Cypher](https://en.wikipedia.org/wiki/Substitution_cipher).
 
@@ -20,13 +20,13 @@ E:u
 2:Y
 ```
 
-Example:
+## Example:
 ```
 dotnet run encrypt c:/map.txt c:/message.txt c:/encrypted.txt
 dotnet run decrypt c:/map.txt c:/encrypted.txt c:/decrypted.txt
 ```
 
-Tips
+## Tips
 
 https://docs.microsoft.com/en-us/dotnet/csharp/how-to/parse-strings-using-split
 https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=netcore-3.1
