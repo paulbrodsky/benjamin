@@ -28,5 +28,8 @@ dotnet run decrypt c:/map.txt c:/encrypted.txt c:/decrypted.txt
 
 ## Tips
 
+How to parse strings
 https://docs.microsoft.com/en-us/dotnet/csharp/how-to/parse-strings-using-split
+
+Dictionary data structure
 https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=netcore-3.1
