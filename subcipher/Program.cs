@@ -10,6 +10,10 @@ namespace subcipher
 
         static void Main(string[] args)
         {
+
+
+
+
             var map = System.IO.File.ReadAllText(args[2]);
 
             var mapItems = map.Split("\r\n");
@@ -38,16 +42,28 @@ namespace subcipher
                 string Message = System.IO.File.ReadAllText(args[1]);
                 var firstcharacter = Message[0];
 
-
-                foreach (char letter in Message)
+                foreach (KeyValuePair<char, char> mapItem in mapDictionary)
                 {
-
+                    Message = Message.Replace(mapItem.Key, mapItem.Value);
                 }
 
+                System.Console.WriteLine(Message);
+
             }
-            else
+
+
+            if (args[0] == "decrypt")
             {
-                System.Console.WriteLine("Message Not Found.");
+                string Message = System.IO.File.ReadAllText(args[1]);
+                var firstcharacter = Message[0];
+
+                foreach (KeyValuePair<char, char> mapItem in mapDictionary)
+                {
+                    Message = Message.Replace(mapItem.Value, mapItem.Key);
+                }
+
+                System.Console.WriteLine(Message);
+
             }
 
 
