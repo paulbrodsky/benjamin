@@ -6,7 +6,7 @@ namespace lib
     {
         public string GetMessage()
         {
-            return null;
+            return "hello";
         }
     }
 }
