@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace lib
 {
-    public class SubcipherMap
+    public class Subcipher
     {
         public Dictionary<char, char> GetMap(string map)
         {
