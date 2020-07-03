@@ -1,3 +1,13 @@
+// TOOLBOX
+// VARIABLES
+// ASSIGNMENT OPERATOR
+// DATA STRUCTURES (STRINGS, ARRAY, CHAR, INTEGER)
+// FUNCTIONS
+// ARGUMENT
+// LOOPS
+// CONDITIONAL STATEMENT
+// EQUALITY
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,6 +16,7 @@ namespace lib
 {
     public class Subcipher
     {
+
         public Dictionary<char, char> GetMap(string map)
         {
             string[] mapItems = map.Split(
@@ -21,6 +32,25 @@ namespace lib
             }
 
             return mapDictionary;
+        }
+
+        public string EncryptMessage(string message, Dictionary<char, char> map)
+        {
+            var encryptedMessage = string.Empty;
+
+            foreach (char c in message)
+            {
+                if (map.ContainsKey(c))
+                {
+                    encryptedMessage += map[c];
+                }
+                else
+                {
+                    encryptedMessage += c;
+                }
+            }
+
+            return encryptedMessage;
         }
     }
 }
