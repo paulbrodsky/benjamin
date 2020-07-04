@@ -1,3 +1,5 @@
+![.NET Core](https://github.com/paulbrodsky/benjamin/workflows/.NET%20Core/badge.svg)
+
 # Substitution Cipher
 
 I would like you to build a program that is able to encrypt and decrypt a file using a [Substitution Cypher](https://en.wikipedia.org/wiki/Substitution_cipher).

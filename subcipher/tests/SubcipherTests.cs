@@ -1,4 +1,6 @@
-using System;
+using System.Reflection;
+using System.IO;
+using System.Text;
 using Xunit;
 using lib;
 using System.Collections.Generic;
@@ -44,6 +46,34 @@ namespace tests
             var encryptedMessage = subcipher.EncryptMessage(message, map);
 
             Assert.Equal("Smarty!", encryptedMessage);
+        }
+
+        [Fact]
+        public void TestEncryptMessageFile()
+        {
+            var mapFileName = "./TestMap.txt";
+            var messageFileName = "./TestMessage.txt";
+            var outputFileName = "./TestEncrypted.txt";
+
+            using (var file = new StreamWriter(mapFileName))
+            {
+                file.Write("t=m\r\nu=a\r\np=r\r\ni=t\r\nd=y");
+            }
+
+            using (var file = new StreamWriter(messageFileName))
+            {
+                file.Write("Stupid!");
+            }
+
+            var subcipher = new Subcipher();
+            subcipher.EncryptMessageFiles(messageFileName, mapFileName, outputFileName);
+
+            Assert.True(File.Exists(outputFileName));
+
+            using (var reader = new StreamReader(outputFileName))
+            {
+                Assert.Equal("Smarty!", reader.ReadToEnd());
+            }
         }
     }
 }
