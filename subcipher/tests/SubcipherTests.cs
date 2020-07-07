@@ -1,6 +1,5 @@
-using System.Reflection;
+using System;
 using System.IO;
-using System.Text;
 using Xunit;
 using lib;
 using System.Collections.Generic;
@@ -14,7 +13,7 @@ namespace tests
         {
             var subcipher = new Subcipher();
 
-            var map = "A=Z\r\nB=Y\r\nC=X";
+            var map = $"A=Z{Environment.NewLine}B=Y{Environment.NewLine}C=X";
 
             Dictionary<char, char> result = subcipher.GetMap(map);
             Assert.Equal(3, result.Keys.Count);
@@ -34,10 +33,21 @@ namespace tests
         {
             var subcipher = new Subcipher();
 
-            var map = "A=Z\r\n\r\nB=Y\r\nC=X";
+            var map = $"A=Z{Environment.NewLine}{Environment.NewLine}B=Y{Environment.NewLine}C=X";
 
             Dictionary<char, char> result = subcipher.GetMap(map);
             Assert.Equal(3, result.Keys.Count);
+        }
+
+        [Fact]
+        public void TestGetMapEmptyValue()
+        {
+            var subcipher = new Subcipher();
+
+            var map = $"A={Environment.NewLine}B=Y{Environment.NewLine}C=X";
+
+            Dictionary<char, char> result = subcipher.GetMap(map);
+            Assert.Equal(2, result.Keys.Count);
         }
 
         [Fact]
@@ -68,7 +78,7 @@ namespace tests
 
             using (var file = new StreamWriter(mapFileName))
             {
-                file.Write("t=m\r\nu=a\r\np=r\r\ni=t\r\nd=y");
+                file.Write($"t=m{Environment.NewLine}u=a{Environment.NewLine}p=r{Environment.NewLine}i=t{Environment.NewLine}d=y");
             }
 
             using (var file = new StreamWriter(messageFileName))
