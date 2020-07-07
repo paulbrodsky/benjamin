@@ -30,6 +30,17 @@ namespace tests
         }
 
         [Fact]
+        public void TestGetMapEmptyLine()
+        {
+            var subcipher = new Subcipher();
+
+            var map = "A=Z\r\n\r\nB=Y\r\nC=X";
+
+            Dictionary<char, char> result = subcipher.GetMap(map);
+            Assert.Equal(3, result.Keys.Count);
+        }
+
+        [Fact]
         public void TestEncryptMessage()
         {
             var subcipher = new Subcipher();
