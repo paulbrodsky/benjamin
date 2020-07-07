@@ -17,15 +17,5 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
-    # - name: Install dependencies
-    #   run: |
-    #     cd subcipher
-    #     dotnet restore
-    # - name: Build
-    #   run: |
-    #     cd subcipher
-    #     dotnet build --configuration Release --no-restore
-    - name: Test
-      run: |
-        cd subcipher
-        dotnet test --no-restore --verbosity normal
+    - name: Test subcipher
+      run: cd subcipher && dotnet test
