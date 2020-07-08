@@ -96,5 +96,18 @@ namespace tests
                 Assert.Equal("Smarty!", reader.ReadToEnd());
             }
         }
+
+        [Fact]
+        public void TestEncryptMessageFileMissing()
+        {
+            var mapFileName = "./TestMapDoesntExist.txt";
+            var messageFileName = "./TestMessageDoesntExist.txt";
+            var outputFileName = "./TestEncrypted.txt";
+
+            var subcipher = new Subcipher();
+            subcipher.EncryptMessageFiles(messageFileName, mapFileName, outputFileName);
+
+            Assert.False(File.Exists(outputFileName));
+        }
     }
 }
