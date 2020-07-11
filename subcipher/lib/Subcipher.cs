@@ -61,23 +61,21 @@ namespace lib
 
         public void EncryptMessageFiles(string messageFileName, string mapFileName, string outputFileName)
         {
-            //read message file
+
+            if (File.Exists(messageFileName) == false || File.Exists(mapFileName) == false)
+            {
+                return;
+            }
+
             var message = File.ReadAllText(messageFileName);
 
-            //read map file
             var map = File.ReadAllText(mapFileName);
 
-            //run map file through get map
             var mapDictionary = this.GetMap(map);
 
-            //run dictionary and message through encrypt message
             var encryptedMessage = this.EncryptMessage(message, mapDictionary);
 
-            //make output file
             File.WriteAllText(outputFileName, encryptedMessage);
         }
-
-
-
     }
 }
