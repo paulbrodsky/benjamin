@@ -23,30 +23,19 @@ namespace lib
                 new[] { Environment.NewLine },
                 StringSplitOptions.None
             );
+
             var mapDictionary = new Dictionary<char, char>();
-
-
-
 
             foreach (var mapItem in mapItems)
             {
+                if (mapItem.Length != 3)
+                {
+                    continue;
+                }
                 var mapPair = mapItem.Split("=".ToCharArray());
-
-                var mapKey = mapPair[0];
-                var mapKey1 = mapPair[0][0];
-                var mapValue = mapPair[1];
-                var mapValue1 = mapPair[1][0];
-
-                if (mapPair.Length == 2)
-                {
-                    mapDictionary.Add(mapKey1, mapValue1);
-                }
-
-
-                if (mapPair.Length < 2)
-                {
-                    mapDictionary.Add(mapKey1, mapKey1);
-                }
+                var mapKeyChar = mapPair[0][0];
+                var mapValueChar = mapPair[1][0];
+                mapDictionary.Add(mapKeyChar, mapValueChar);
             }
             return mapDictionary;
         }
