@@ -10,35 +10,27 @@ namespace subcipher
 
         static void Main(string[] args)
         {
-            // if (args[0] == "encrypt")
-            // {
-            //     string Message = System.IO.File.ReadAllText(args[1]);
-            //     var firstcharacter = Message[0];
 
-            //     foreach (KeyValuePair<char, char> mapItem in mapDictionary)
-            //     {
-            //         Message = Message.Replace(mapItem.Key, mapItem.Value);
-            //     }
+            try
+            {
+                string myString = "hello";
 
-            //     System.Console.WriteLine(Message);
+                System.Console.WriteLine(myString.Length);
+                throw new Exception();
+            }
+            catch (System.NullReferenceException)
+            {
+                System.Console.WriteLine("caught a null reference exception");
+            }
+            catch (Exception exc)
+            {
 
-            // }
+                System.Console.WriteLine("caught an exception");
 
-            // if (args[0] == "decrypt")
-            // {
-            //     string Message = System.IO.File.ReadAllText(args[1]);
-            //     var firstcharacter = Message[0];
 
-            //     foreach (KeyValuePair<char, char> mapItem in mapDictionary)
-            //     {
-            //         Message = Message.Replace(mapItem.Value, mapItem.Key);
-            //     }
+            }
 
-            //     System.Console.WriteLine(Message);
 
-            // }
         }
-
-
     }
 }
