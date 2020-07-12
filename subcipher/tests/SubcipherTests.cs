@@ -61,6 +61,14 @@ namespace tests
         }
 
         [Fact]
+        public void TestGetMapNulls()
+        {
+            var subcipher = new Subcipher();
+            Dictionary<char, char> result = subcipher.GetMap(null);
+            Assert.Equal(0, result.Keys.Count);
+        }
+
+        [Fact]
         public void TestEncryptMessage()
         {
             var subcipher = new Subcipher();
