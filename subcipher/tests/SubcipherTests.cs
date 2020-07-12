@@ -69,6 +69,21 @@ namespace tests
         }
 
         [Fact]
+        public void TestEncryptMessageNulls()
+        {
+            var subcipher = new Subcipher();
+            string result = subcipher.EncryptMessage(null, null);
+            Assert.Equal(string.Empty, result);
+        }
+
+        [Fact]
+        public void TestEncryptFileNameNulls()
+        {
+            var subcipher = new Subcipher();
+            subcipher.EncryptMessageFiles(null, null, null);
+        }
+
+        [Fact]
         public void TestEncryptMessage()
         {
             var subcipher = new Subcipher();

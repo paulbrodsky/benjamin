@@ -19,6 +19,11 @@ namespace lib
 
         public Dictionary<char, char> GetMap(string map)
         {
+            if (map == null)
+            {
+                return new Dictionary<char, char>();
+            }
+
             string[] mapItems = map.Split(
                 new[] { Environment.NewLine },
                 StringSplitOptions.None
@@ -42,6 +47,12 @@ namespace lib
 
         public string EncryptMessage(string message, Dictionary<char, char> map)
         {
+
+            if (message == null || map == null)
+            {
+                return string.Empty;
+            }
+
             var encryptedMessage = string.Empty;
 
             foreach (char c in message)
@@ -61,6 +72,8 @@ namespace lib
 
         public void EncryptMessageFiles(string messageFileName, string mapFileName, string outputFileName)
         {
+
+
 
             if (File.Exists(messageFileName) == false || File.Exists(mapFileName) == false)
             {
