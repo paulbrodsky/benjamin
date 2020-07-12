@@ -8,6 +8,16 @@ namespace tests
 {
     public class SubcipherTests
     {
+        private const string _OutputFileName = "./TestEncrypted.txt";
+
+        public SubcipherTests()
+        {
+            if (File.Exists(_OutputFileName))
+            {
+                File.Delete(_OutputFileName);
+            }
+        }
+
         [Fact]
         public void TestGetMap()
         {
@@ -74,7 +84,6 @@ namespace tests
         {
             var mapFileName = "./TestMap.txt";
             var messageFileName = "./TestMessage.txt";
-            var outputFileName = "./TestEncrypted.txt";
 
             using (var file = new StreamWriter(mapFileName))
             {
@@ -87,11 +96,11 @@ namespace tests
             }
 
             var subcipher = new Subcipher();
-            subcipher.EncryptMessageFiles(messageFileName, mapFileName, outputFileName);
+            subcipher.EncryptMessageFiles(messageFileName, mapFileName, _OutputFileName);
 
-            Assert.True(File.Exists(outputFileName));
+            Assert.True(File.Exists(_OutputFileName));
 
-            using (var reader = new StreamReader(outputFileName))
+            using (var reader = new StreamReader(_OutputFileName))
             {
                 Assert.Equal("Smarty!", reader.ReadToEnd());
             }
@@ -102,12 +111,11 @@ namespace tests
         {
             var mapFileName = "./TestMapDoesntExist.txt";
             var messageFileName = "./TestMessageDoesntExist.txt";
-            var outputFileName = "./TestEncrypted.txt";
 
             var subcipher = new Subcipher();
-            subcipher.EncryptMessageFiles(messageFileName, mapFileName, outputFileName);
+            subcipher.EncryptMessageFiles(messageFileName, mapFileName, _OutputFileName);
 
-            Assert.False(File.Exists(outputFileName));
+            Assert.False(File.Exists(_OutputFileName));
         }
     }
 }
