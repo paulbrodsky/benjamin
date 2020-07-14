@@ -1,4 +1,6 @@
 ﻿using System;
+using lib;
+
 
 namespace subcipher
 {
@@ -6,6 +8,17 @@ namespace subcipher
     {
         static void Main(string[] args)
         {
+            var subcipher = new Subcipher();
+
+            if (args.Length != 4)
+            {
+                return;
+            }
+
+            if (args[0] == "encrypt")
+            {
+                subcipher.EncryptMessageFiles(args[1], args[2], args[3]);
+            }
         }
     }
 }
