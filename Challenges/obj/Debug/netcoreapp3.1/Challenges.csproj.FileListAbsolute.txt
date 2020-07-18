@@ -1,0 +1,4 @@
+/Users/paul/dev/benjamin/Challenges/obj/Debug/netcoreapp3.1/Challenges.csprojAssemblyReference.cache
+/Users/paul/dev/benjamin/Challenges/obj/Debug/netcoreapp3.1/Challenges.AssemblyInfoInputs.cache
+/Users/paul/dev/benjamin/Challenges/obj/Debug/netcoreapp3.1/Challenges.AssemblyInfo.cs
+/Users/paul/dev/benjamin/Challenges/obj/Debug/netcoreapp3.1/Challenges.csproj.CoreCompileInputs.cache
