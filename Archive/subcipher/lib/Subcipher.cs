@@ -72,9 +72,6 @@ namespace lib
 
         public void EncryptMessageFiles(string messageFileName, string mapFileName, string outputFileName)
         {
-
-
-
             if (File.Exists(messageFileName) == false || File.Exists(mapFileName) == false)
             {
                 return;
@@ -90,5 +87,31 @@ namespace lib
 
             File.WriteAllText(outputFileName, encryptedMessage);
         }
+
+        public string DecryptMessage(string encryptedMessage, Dictionary<char, char> map)
+        {
+
+            if (encryptedMessage == null || map == null)
+            {
+                return string.Empty;
+            }
+
+            var decryptedMessage = string.Empty;
+
+            foreach (char c in encryptedMessage)
+            {
+                if (map.ContainsKey(c))
+                {
+                    decryptedMessage += map[c];
+                }
+                else
+                {
+                    decryptedMessage += c;
+                }
+            }
+
+            return decryptedMessage;
+        }
+
     }
 }

@@ -12,6 +12,7 @@ namespace subcipher
 
             if (args.Length != 4)
             {
+                System.Console.WriteLine("");
                 return;
             }
 
@@ -19,6 +20,9 @@ namespace subcipher
             {
                 subcipher.EncryptMessageFiles(args[1], args[2], args[3]);
             }
+
+
+
         }
     }
 }
