@@ -25,12 +25,10 @@ namespace leetcode
             Assert.Equal("3214", emptyList);
         }
 
-        [Fact]
-
-
         int[] arr = { 10, 324, 45, 90, 9808 };
 
         // Method to find maximum in arr[] 
+        [Fact]
         static int largest()
         {
             int i;
