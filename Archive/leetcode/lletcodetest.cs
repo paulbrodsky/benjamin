@@ -7,51 +7,43 @@ namespace leetcode
 {
     public class LeetCodeTests
     {
-        // [Fact]
-        // public void RemoveDuplicate()
-        // {
-        //     var originalList = "3231214321";
-
-        //     var emptyList = string.Empty;
-
-        //     foreach (char c in originalList)
-        //     {
-        //         if (!emptyList.Contains(c))
-        //         {
-        //             emptyList = emptyList + c;
-        //         }
-        //     }
-
-        // //     Assert.Equal("3214", emptyList);
-        // // }
-
-
-        int[] arr = { 10, 324, 45, 90, 9808 };
-
-        // Method to find maximum in arr[] 
         [Fact]
-        static int largest()
+        public void test()
         {
-            int i;
+            var node1 = new ListNode(4);
+            var node2 = new ListNode(5);
+            var node3 = new ListNode(1);
+            var node4 = new ListNode(9);
 
-            // Initialize maximum element 
-            int max = arr[0];
+            node1.next = node2;
+            node2.next = node3;
+            node3.next = node4;
 
-            // Traverse array elements from second and 
-            // compare every element with current max  
-            for (i = 1; i < arr.Length; i++)
-                if (arr[i] > max)
-                    max = arr[i];
+            Assert.Equal(1, node3.val);
+            Assert.Equal(node4, node3.next);
 
-            Assert.Equal("9808", largest());
+            var s = new Solution();
+            s.DeleteNode(node3);
 
-            return max;
+            Assert.Equal(9, node3.val);
+            Assert.Null(node3.next);
         }
 
-        // public void findHighestNumber()
-        // {
+        public class ListNode
+        {
+            public int val;
+            public ListNode next;
+            public ListNode(int x) { val = x; }
+        }
 
-        // }
+        public class Solution
+        {
+            public void DeleteNode(ListNode node)
+            {
+                node.val = node.next.val;
+                node.next = node.next.next;
+            }
+        }
 
 
     }

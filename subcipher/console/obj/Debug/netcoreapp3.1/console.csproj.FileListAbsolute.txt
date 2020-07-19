@@ -1,0 +1,16 @@
+C:\Users\b3nb0\dev\benjamin\subcipher\console\bin\Debug\netcoreapp3.1\console.exe
+C:\Users\b3nb0\dev\benjamin\subcipher\console\bin\Debug\netcoreapp3.1\console.deps.json
+C:\Users\b3nb0\dev\benjamin\subcipher\console\bin\Debug\netcoreapp3.1\console.runtimeconfig.json
+C:\Users\b3nb0\dev\benjamin\subcipher\console\bin\Debug\netcoreapp3.1\console.runtimeconfig.dev.json
+C:\Users\b3nb0\dev\benjamin\subcipher\console\bin\Debug\netcoreapp3.1\console.dll
+C:\Users\b3nb0\dev\benjamin\subcipher\console\bin\Debug\netcoreapp3.1\console.pdb
+C:\Users\b3nb0\dev\benjamin\subcipher\console\obj\Debug\netcoreapp3.1\console.csprojAssemblyReference.cache
+C:\Users\b3nb0\dev\benjamin\subcipher\console\obj\Debug\netcoreapp3.1\console.AssemblyInfoInputs.cache
+C:\Users\b3nb0\dev\benjamin\subcipher\console\obj\Debug\netcoreapp3.1\console.AssemblyInfo.cs
+C:\Users\b3nb0\dev\benjamin\subcipher\console\obj\Debug\netcoreapp3.1\console.csproj.CoreCompileInputs.cache
+C:\Users\b3nb0\dev\benjamin\subcipher\console\obj\Debug\netcoreapp3.1\console.dll
+C:\Users\b3nb0\dev\benjamin\subcipher\console\obj\Debug\netcoreapp3.1\console.pdb
+C:\Users\b3nb0\dev\benjamin\subcipher\console\obj\Debug\netcoreapp3.1\console.genruntimeconfig.cache
+C:\Users\b3nb0\dev\benjamin\subcipher\console\bin\Debug\netcoreapp3.1\lib.dll
+C:\Users\b3nb0\dev\benjamin\subcipher\console\bin\Debug\netcoreapp3.1\lib.pdb
+C:\Users\b3nb0\dev\benjamin\subcipher\console\obj\Debug\netcoreapp3.1\console.csproj.CopyComplete
