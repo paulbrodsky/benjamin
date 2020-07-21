@@ -17,7 +17,21 @@ namespace Challanges
             Assert.Equal(9, maximum);
         }
 
-        // your code goes here
+        public int GetMaximum(int[] numbers)
+        {
+
+            int maximum = 0;
+
+            foreach (int n in numbers)
+            {
+                if (n > maximum)
+                {
+                    maximum = n;
+                }
+            }
+
+            return maximum;
+        }
     }
 }
 

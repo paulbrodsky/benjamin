@@ -3505,19 +3505,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/paul/.nuget/packages/": {}
+    "C:\\Users\\b3nb0\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/paul/dev/benjamin/Challenges/Challenges.csproj",
+      "projectUniqueName": "C:\\Users\\b3nb0\\dev\\benjamin\\Challenges\\Challenges.csproj",
       "projectName": "Challenges",
-      "projectPath": "/Users/paul/dev/benjamin/Challenges/Challenges.csproj",
-      "packagesPath": "/Users/paul/.nuget/packages/",
-      "outputPath": "/Users/paul/dev/benjamin/Challenges/obj/",
+      "projectPath": "C:\\Users\\b3nb0\\dev\\benjamin\\Challenges\\Challenges.csproj",
+      "packagesPath": "C:\\Users\\b3nb0\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\b3nb0\\dev\\benjamin\\Challenges\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/paul/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\b3nb0\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -3571,7 +3571,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.301/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
       }
     }
   }
