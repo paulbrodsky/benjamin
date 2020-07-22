@@ -12,12 +12,22 @@ namespace Challanges
         {
             string input = "!boj taerg";
 
-            string output = this.ReverseString(input);
+            string output = this.ReverseMessage(input);
 
             Assert.Equal("great job!", output);
         }
 
-        // your code goes here
+        public string ReverseMessage(string input)
+        {
+            var output = string.Empty;
+
+            for (int i = input.Length - 1; i > -1; i--)
+            {
+                output = output + input[i];
+            }
+
+            return output;
+        }
     }
 }
 
