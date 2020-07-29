@@ -10,12 +10,24 @@ namespace Challanges
         [Fact]
         public void Run()
         {
-            string input = "abacadaeaf";
-            int instanceCount = this._CountInstances(intput, "a");
+            string x = "abacadaeaf";
+            int instanceCount = this._CountInstances(x, "a");
             Assert.Equal(5, instanceCount);
         }
 
-        // your code goes here
+        public int _CountInstances(string input, string letter)
+        {
+            int output = 0;
+
+            foreach (char c in input)
+            {
+                if (c.ToString() == letter)
+                {
+                    output++;
+                }
+            }
+            return output;
+        }
     }
 }
 
