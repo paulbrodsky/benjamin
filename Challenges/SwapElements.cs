@@ -15,7 +15,19 @@ namespace SwapElements
             Assert.Equal(new int[] { 2, 1 }, input);
         }
 
-        // your code goes here
+        public void _SwapElements(int[] input)
+        {
+            var output = new int[] { 0, 0 };
+
+            output[0] += input[1];
+
+            output[1] += input[0];
+
+            input[0] = output[0];
+
+            input[1] = output[1];
+
+        }
     }
 }
 
