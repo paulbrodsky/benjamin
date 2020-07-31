@@ -17,15 +17,16 @@ namespace SwapElements
 
         public void _SwapElements(int[] input)
         {
-            var output = new int[] { 0, 0 };
+            var output = 0;
 
-            output[0] += input[1];
+            output = input[0];
 
-            output[1] += input[0];
+            input[0] = input[1];
 
-            input[0] = output[0];
+            input[1] = output;
 
-            input[1] = output[1];
+
+
 
         }
     }
