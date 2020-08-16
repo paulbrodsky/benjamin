@@ -7,15 +7,15 @@ namespace Challanges
 {
     public class BubbleSort
     {
-        [Fact]
-        public void Run()
+        [Theory]
+        [InlineData(new int[] { 4, 3, 5, 6, 9, 1, 8, 2, 7 })]
+        public void Run(int[] input)
         {
-            var input = new[] { 4, 3, 5, 6, 9, 1, 8, 2, 7 };
             this.Sort(input);
             Assert.Equal(new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, input);
         }
 
-        public void Sort(int[] input)
+        private void Sort(int[] input)
         {
 
             bool hasSwapped = true;

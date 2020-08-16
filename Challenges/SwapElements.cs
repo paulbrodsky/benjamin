@@ -7,15 +7,15 @@ namespace SwapElements
 {
     public class Template
     {
-        [Fact]
-        public void Run()
+        [Theory]
+        [InlineData(new int[] { 1, 2 })]
+        public void Run(int[] input)
         {
-            var input = new int[] { 1, 2 };
             this._SwapElements(input);
             Assert.Equal(new int[] { 2, 1 }, input);
         }
 
-        public void _SwapElements(int[] input)
+        private void _SwapElements(int[] input)
         {
             var output = 0;
 
@@ -24,9 +24,6 @@ namespace SwapElements
             input[0] = input[1];
 
             input[1] = output;
-
-
-
 
         }
     }

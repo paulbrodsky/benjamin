@@ -16,7 +16,7 @@ namespace Challanges
 
             var editedMessage = this.VowelRemove(vowels, message);
 
-            Assert.Equal(editedMessage, "hll wrld");
+            Assert.Equal("hll wrld", editedMessage);
         }
 
         public string VowelRemove(string[] vowels, string message)

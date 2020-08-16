@@ -50,7 +50,7 @@ namespace Challanges
 
             int output = this.SingleNumber(nums);
 
-            Assert.Equal(output, 1);
+            Assert.Equal(1, output);
 
         }
 
